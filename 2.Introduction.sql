@@ -53,7 +53,7 @@ SELECT concat(cust.last_name, ', ', cust.first_name) full_name
     FROM
         (SELECT first_name, last_name, email
              FROM customer
-             WHERE first_name = 'JESSIE') cust;
+            WHERE first_name = 'JESSIE') cust;
 
 # temporary table
     # 모든 관계형 데이터베이스는 휘발성의 임시 테이블을 정의할 수 있음.
@@ -143,22 +143,37 @@ FROM customer c
 WHERE date(r.rental_date) = '2005-06-14'
 ORDER BY time(r.rental_date) desc;
 
+SELECT c.first_name, c.last_name, time(r.rental_date) rentan_time
+FROM customer c
+         INNER JOIN rental r ON c.customer_id = r.customer_id
+WHERE date(r.rental_date) = '2005-06-14'
+ORDER BY 3 desc;
 
+desc actor;
 
+# Questions
+show schemas;
+use sakila;
+show tables;
+desc actor;
 
+SELECT a.actor_id, a.first_name, a.last_name
+FROM actor a
+ORDER BY last_name, first_name;
 
+SELECT a.actor_id, a.first_name, a.last_name
+FROM actor a
+WHERE last_name = 'WILLIAMS' OR last_name='DAVIS';
 
+desc rental;
+SELECT r.customer_id
+FROM rental r
+WHERE date(r.rental_date) = '2005-07-07';
 
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT c.email, r.return_date
+FROM customer c
+    INNER JOIN rental r
+    ON c.customer_id = r.customer_id
+WHERE date(r.rental_date) = '2005-06-14'
+ORDER BY r.return_date desc;
 
