@@ -114,9 +114,8 @@ WHERE first_name='JOHN';
 desc address;
 select a1.address addr1, a2.address addr2, a1.city_id, a1.address_id, a2.address_id
 from address a1 inner join address a2
-where a1.city_id = a2.city_id
-  and a1.address_id <> a2.address_id;
-
+on a1.city_id = a2.city_id
+where a1.address_id <> a2.address_id; #and a1.address_id > a2.address_id
 
 
 
